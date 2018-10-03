@@ -22,7 +22,7 @@
 import sys
 import argparse
 import re
-import datetime
+from datetime import datetime
 # import socket
 from collections import Counter
 from collections import defaultdict
@@ -157,7 +157,7 @@ def process_trusted(trusted):
 
 def process_cli():
     parser = argparse.ArgumentParser(description="BIND's log query analyser")
-    parser.add_argument('logfiles', nargs='+', help="BIND's log files", metavar="filename")
+    parser.add_argument('logfiles', nargs='+', help="List of BIND log files", metavar="filename")
     parser.add_argument('--trusted', nargs='?', help="List of trusted domains to be excluded from stats", metavar="filename" )
     parser.add_argument('--count', nargs='?', type=int, help="Number of queries to display, default 10", metavar="number", default=10)
     parser.add_argument('--starttime', nargs='?', help="Analysis start time. Format %%d-%%m-%%y %%H:%%M:%%S", metavar="%d-%m-%y %H:%M:%S", default="")
