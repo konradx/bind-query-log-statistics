@@ -134,13 +134,13 @@ def process_query(query):
 
 def process_log(logs):
     for log in logs:
-        print("Processing file " + log)
+        print("Processing file {}".format(log))
         try:
             with open(log, 'r') as fh:
                 for query in fh:
                     process_query(query)
         except IOError:
-            print("Error processing file " + log)
+            print("Error processing file {}".format(log))
             sys.exit(1)
 
 
@@ -152,7 +152,7 @@ def process_trusted(trusted):
             for domain in fh:
                 TRUSTED_DOMAINS.append(domain.strip())
     except IOError:
-        print("Error processing file " + trusted)
+        print("Error porcessing file {}".format(trusted))
 
 
 def process_cli():
@@ -170,23 +170,23 @@ def process_cli():
 
 def print_quick_stats():
     """ Print a number of summary statistics """
-    print("\nSummary for %s - %s\n" % (datetime.strftime(ANALYSIS_START_TIME, time_short), datetime.strftime(ANALYSIS_END_TIME, time_short)))
-    print("%-25s : %d" % ("Total DNS QUERIES processed", TOTAL_QUERIES))
+    print("\nSummary for {} - {}\n".format(datetime.strftime(ANALYSIS_START_TIME, time_short), datetime.strftime(ANALYSIS_END_TIME, time_short)))
+    print("Total DNS QUERIES processed : {:<25}".format(TOTAL_QUERIES))
 
     for record, query_count in sorted(DNS_RECORDS.items(), key=lambda a: a[1], reverse=True):
-        print("  %-6s records requested : %d" % (record, query_count))
+        print("  {:<6} records requested : {}".format(record, query_count))
 
 
 def print_top_dns_queries_short(count):
-    print("\nTop {} DNS names requested (short name):".format(count))
+    print("\nTop {} DNS names requested (short name: count):".format(count))
     for query, _ in Counter(DNS_QUERIES_SHORT).most_common(count):
-        print("  " + query + " : " + str(DNS_QUERIES_SHORT[query]))
+        print("  {}: {}".format(query, DNS_QUERIES_SHORT[query]))
 
 
 def print_top_dns_queries_long(count):
-    print("\nTop {} DNS names requested (full query name):".format(count))
+    print("\nTop {} DNS names requested (full query name: count):".format(count))
     for query, _ in Counter(DNS_QUERIES).most_common(count):
-        print("  " + query + " : " + str(DNS_QUERIES[query]))
+        print("  {}: {}".format(query, DNS_QUERIES[query]))
 
 
 def print_top_dns_cliens(count):
