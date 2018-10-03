@@ -201,7 +201,7 @@ def print_top_longest_domains(count):
     print("\nTop {} longest domains:\n".format(count))
     LONGEST_QUERIES = sorted(QUERIES, key=lambda d: len(d[2]), reverse=True)
     for i in range(0, count):
-        print(LONGEST_QUERIES[i][2])
+        print(" {:02}. {} ({} chars)".format(i+1, LONGEST_QUERIES[i][2], len(LONGEST_QUERIES[i][2])))
 
 
 def print_dns_resolution_longer_than(qlta):
